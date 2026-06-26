@@ -55,7 +55,7 @@ function check_imgui()
 	if(os.isdir("imgui") == false and os.isdir("imgui-master") == false) then
 		if(not os.isfile("imgui-master.zip")) then
 			print("imgui not found, downloading from github")
-			local result_str, response_code = http.download("https://github.com/ocornut/imgui/archive/refs/heads/master.zip", "imgui-master.zip", {
+			local result_str, response_code = http.download("https://github.com/ocornut/imgui/archive/refs/heads/docking.zip", "imgui-master.zip", {
 				progress = download_progress,
 				headers = { "From: Premake", "Referer: Premake" }
 			})
@@ -63,6 +63,7 @@ function check_imgui()
 		print("Unzipping to " ..  os.getcwd())
 		zip.extract("imgui-master.zip", os.getcwd())
 		os.remove("imgui-master.zip")
+		os.rename ("imgui-docking", "imgui-master")
 	end
 end
 
